@@ -7,6 +7,7 @@ interface IXENTorrent {
     function vmuCount(uint256 tokenId) external view returns (uint256);
     function xenBurned(uint256 tokenId) external view returns (uint256);
     function mintInfo(uint256 tokenId) external view returns (uint256);
+    function tokenURI(uint256 tokenId) external view returns (string memory);
 }
 
 contract XenftLookup {
@@ -62,9 +63,35 @@ contract XenftLookup {
             erc721.ownerOf(tokenId), // owner
             (info & 1) != 0 // redeemed
         );
+    } 
+
+    
+    function getNFTSVGImage(uint256 tokenId) public view returns (bytes memory) {
+        require(xentorrent.vmuCount(tokenId) > 0, "NFTAttributesLookup: Invalid token ID");
+
+        string memory tokenURI = xentorrent.tokenURI(tokenId);
+
+        // Extract the SVG image data from the tokenURI
+        string memory prefix = 'image/svg+xml;base64,';
+        require(bytes(tokenURI).length > bytes(prefix).length, "NFTAttributesLookup: Invalid token URI");
+        
+        string memory svgData = substring(tokenURI, bytes(prefix).length, bytes(tokenURI).length);
+        return bytes(svgData);
     }
 
-  
+    /// Helper function to extract a substring from a string
+    function substring(string memory str, uint256 startIndex, uint256 endIndex) private pure returns (string memory) {
+        bytes memory strBytes = bytes(str);
+        require(startIndex < strBytes.length, "Invalid startIndex");
+        require(endIndex <= strBytes.length, "Invalid endIndex");
+        require(startIndex <= endIndex, "Invalid range");
+
+        bytes memory result = new bytes(endIndex - startIndex);
+        for (uint256 i = startIndex; i < endIndex; i++) {
+            result[i - startIndex] = strBytes[i];
+        }
+        return string(result);
+    }
 
     function getNFTProgress(uint256 tokenId) public view returns (uint256) {
         (,, , uint256 term, uint256 maturityTs,,) = getNFTInfoAttributes(tokenId);
@@ -92,8 +119,6 @@ contract XenftLookup {
             return progress;
         }
     }
-
-
 
 
     function _decodeMintInfo(uint256 info) private pure returns (string memory) {
