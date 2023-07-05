@@ -38,9 +38,9 @@ contract XenftLookup {
             xentorrent.vmuCount(tokenId),
             xentorrent.xenBurned(tokenId),
             (info >> 240) & 0xFFFF, // term
-            (info >> 64) & 0xFFFFFFFFFFFFFFFF, // maturityTs
-            (info >> 128) & 0xFFFFFFFFFFFFFFFF, // rank
-            (info >> 16) & 0xFFFF // amp
+            (info >> 176) & 0xFFFFFFFFFFFFFFFF, // maturityTs
+            (info >> 48) & 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF, // rank
+            (info >> 32) & 0xFFFF // amp
         );
     }
 
@@ -48,17 +48,19 @@ contract XenftLookup {
         uint256,
         bool,
         bool,
-        address
+        address,
+        bool
     ) {
         require(xentorrent.vmuCount(tokenId) > 0, "NFTAttributesLookup: Invalid token ID");
 
         uint256 info = xentorrent.mintInfo(tokenId);
 
         return (
-            (info >> 32) & 0xFFFF, // eaa
-            ((info >> 7) & 1) != 0, // apex
-            ((info >> 6) & 1) != 0, // limited
-            erc721.ownerOf(tokenId) // owner
+            (info >> 16) & 0xFFFF, // eaa
+            ((info >> 15) & 1) != 0, // apex
+            ((info >> 14) & 1) != 0, // limited
+            erc721.ownerOf(tokenId), // owner
+            (info & 1) != 0 // redeemed
         );
     }
 

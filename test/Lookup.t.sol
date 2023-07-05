@@ -49,7 +49,8 @@ contract XenftLookupTest is Test {
             uint256 eaa,
             bool apex,
             bool limited,
-            address owner
+            address owner,
+            bool redeemed
         ) = xenftLookupInstance.getNFTExtraAttributes(tokenId);
 
         // Log the attributes for testing purposes
@@ -57,6 +58,7 @@ contract XenftLookupTest is Test {
         console.log("Apex: ", apex);
         console.log("Limited: ", limited);
         console.log("Owner: ", owner);
+        console.log("Redeemed: ", redeemed);
 
         // Add assertions to verify the returned attributes if necessary
     }
