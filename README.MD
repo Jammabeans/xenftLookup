@@ -1,16 +1,20 @@
-# XenftLookup
+# XenftLookup (Development Version)
 
-This is an open-source Solidity smart contract for Ethereum, designed to interact with the XENft Non-Fungible Token (NFT) system. It provides builders with functionality for looking up specific information about NFTs based on their unique token ID. It's designed for ease-of-use, allowing anyone to integrate it into their decentralized applications (dApps).
+⚠️ **IMPORTANT**: This version of XenftLookup Solidity smart contract is currently under active development and is **NOT** ready for production use. It's highly recommended to test and adjust the contract according to your own requirements before using it for any production level applications.
+
+XenftLookup is an open-source Ethereum contract designed to provide an interface for interacting with XENft Non-Fungible Tokens (NFTs). It provides foundational functionality for looking up specific information about NFTs based on their unique token ID. Its ease-of-use design allows anyone to integrate it into their decentralized applications (dApps).
 
 ## Features
 
-- Look up detailed information about a specific NFT, including VMU count, XEN tokens burned, term, maturity timestamp, rank, and amp.
+- Retrieve detailed information about a specific NFT, including VMU count, XEN tokens burned, term, maturity timestamp, rank, and amp.
 - Get additional attributes like EAA, Apex status, whether it's limited, and the owner of the NFT.
 - Calculate the progress of the NFT based on its term and maturity timestamp, returned as a percentage.
 - Convert an Ethereum address into a uint256 or a string, handy for various utility purposes.
 - Interact with the `xentorrent` and a specified ERC721 contract directly.
 
 ## Setup & Installation
+
+
 
 1. Make sure you have `nodejs` and `npm` installed. You can verify this by running `node -v` and `npm -v`. If you haven't installed these, check out [nodejs.org](https://nodejs.org/) for installation instructions.
 
