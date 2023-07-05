@@ -1,0 +1,7 @@
+@openzeppelin/contracts=node_modules/@openzeppelin/contracts
+@uniswap/v2-periphery=node_modules/@uniswap/v2-periphery
+@uniswap/v2-core=node_modules/@uniswap/v2-core
+@uniswap/v3-core=node_modules/@uniswap/v3-core
+@openzeppelin/contracts/token/ERC721/IERC721.sol=node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol
+@openzeppelin/contracts/token/ERC721/IERC721Metadata.sol=node_modules/@openzeppelin/contracts/token/ERC721/IERC721Metadata.sol
+@openzeppelin/contracts/utils/Strings.sol=node_modules/@openzeppelin/contracts/utils/Strings.sol
